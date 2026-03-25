@@ -9,4 +9,4 @@ acr_name = "acrvladvontranssylvanien"
 
 # PostgreSQL Database
 postgresql_database_name = "learning_journal"
-postgresql_server_name = "psql-vladvontranssylvanien"
+postgresql_server_name   = "psql-vladvontranssylvanien"
