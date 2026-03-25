@@ -106,11 +106,14 @@ jobs:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
 
     steps:
+      - name: Save CA certificate
+        run: |
+          echo "${{ secrets.K8S_CA_CERT }}" | base64 -d > /tmp/ca.crt
       - name: Set up kubectl
         run: |
           kubectl config set-cluster k8s-cluster \
             --server=${{ secrets.K8S_SERVER }} \
-            --insecure-skip-tls-verify=true
+            --certificate-authority=/tmp/ca.crt
 
           kubectl config set-credentials github-deployer \
             --token=${{ secrets.K8S_TOKEN }}
